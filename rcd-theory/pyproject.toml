@@ -1,0 +1,16 @@
+[project]
+name = "rcd-theory"
+version = "0.1.0"
+description = "Formal architecture and symbolic dynamics of Recursive Cognitive Dynamics (RCD)"
+authors = [{ name = "Ryan S.", email = "your@email.com" }]
+license = "MIT"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "networkx",
+    "pydot",  # for graphviz diagrams
+    "jupyter"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
