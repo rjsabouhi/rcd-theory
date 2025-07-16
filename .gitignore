@@ -1,6 +1,26 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.egg-info/
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environments
 .env
-.ipynb_checkpoints/
+.venv
+venv/
+ENV/
+env/
+
+# VSCode settings
+.vscode/
+
+# Pytest
+.pytest_cache/
+*.cover
+coverage.xml
+
+# Logs and metadata
+*.log
 .DS_Store

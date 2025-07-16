@@ -17,8 +17,17 @@ RCD models both human and AI cognition as evolving state trajectories across pha
 - **τ(t)** — Transformation rate of the human cognitive manifold  
 - **μ(t)** — Meta-reflexivity and recursive structure depth  
 - **Λ(t)** — Lake-State persistence function (see below)
+- **M_recon(φ, t)** — Memory reconciliation (see below) 
 
 Through these metrics, RCD describes how feedback loops can result in **coherent emergent states**, or conversely, destabilizing divergence or hallucination.
+
+---
+
+## Topological Memory Extension
+
+The RCD model now includes a formal operator for memory-driven topology reshaping.
+
+See [README_Memory.md](./README_Memory.md) for details on the `M_recon(φ, t)` operator and how memory reconciliation shapes the symbolic phase manifold.
 
 ---
 

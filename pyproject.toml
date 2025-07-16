@@ -8,8 +8,8 @@ dependencies = [
     "numpy",
     "matplotlib",
     "networkx",
-    "pydot",  # for graphviz diagrams
-    "jupyter"
+    "pydot",      # Optional: supports Graphviz diagramming
+    "jupyter"     # Optional: for using notebooks directly
 ]
 
 [tool.setuptools.packages.find]
