@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this framework in research or derivative projects, please cite this work."
+authors:
+  - family-names: Sabouhi
+    given-names: Ryan
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # remove or update if not applicable
+title: "Recursive Cognitive Dynamics: Symbolic Phase Modeling for Identity, Affect, and Alignment"
+version: 1.0.0
+date-released: 2025-07-17
+license: MIT
+repository-code: https://github.com/rjsabouhi/rcd-theory
