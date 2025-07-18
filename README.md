@@ -38,3 +38,6 @@ See [`LICENSE`](./LICENSE) and [`CITATION.cff`](./CITATION.cff).
 
 Created by [Ryan Sabouhi](https://github.com/rjsabouhi).  
 If this reflects something you've been building toward — reach out.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for collaboration info.
+See [modules.md](./modules.md) for a code structure overview.
