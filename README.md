@@ -4,6 +4,8 @@ Recursive Cognitive Dynamics is a symbolic framework for modeling cognition, ide
 
 > This repo contains the **core theoretical architecture** of the RCD framework.
 
+---
+
 ## What Is This?
 
 Most cognitive models treat identity as static, or cognition as linear computation.  
@@ -18,6 +20,8 @@ Built to support:
 - Symbolic affect simulation
 - Self-regulating agent architectures
 
+---
+
 ## What's In This Repo?
 
 - `notebooks/`: Conceptual models, equations, and phase diagrams
@@ -28,11 +32,24 @@ Built to support:
   - [`rcd-reinforcement-topology`](https://github.com/rjsabouhi/rcd-reinforcement-topology): Dopaminergic symbolic analog models
   - [`marve-lab`](https://github.com/rjsabouhi/marve-lab): Multi-agent recursive verification engine
 
+---
+
+## Extended Documentation
+
+- [Technical Reference](./README-technical.md)
+- [Memory Reconciliation](./docs/README_Memory.md)
+- [Karmic Constraint Encoding](./docs/kce.md)
+- [Neurochemical Analogues](./docs/neuro_analog.md)
+
+---
+
 ## License & Reuse
 
 Open source under MIT.  
 Reproducibility is the demo. Attribution required.  
 See [`LICENSE`](./LICENSE) and [`CITATION.cff`](./CITATION.cff).
+
+---
 
 ## Contact
 
