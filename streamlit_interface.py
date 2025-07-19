@@ -1,6 +1,11 @@
 import streamlit as st
 import numpy as np
 from src.rcd_model import RCDModel
+from app.memory_buffer import SymbolMemory
+
+# Initialize in Streamlit session state
+if "memory" not in st.session_state:
+    st.session_state.memory = SymbolMemory()
 
 st.title("Attractor Forge - RCD Simulation")
 
@@ -13,62 +18,47 @@ delta = st.sidebar.slider("Delta", 0.0, 1.0, 0.1)
 dimensions = st.sidebar.slider("Dimensions", 1, 20, 3)
 noise = st.sidebar.slider("Noise Level", 0.0, 0.5, 0.1)
 
-# Create and configure model
-model = RCDModel()
-model.set_parameters(alpha=alpha, beta=beta, delta=delta, n_dimensions=dimensions, noise_level=noise)
+# Add current symbolic input to memory
+# st.session_state.memory.add(symbol, alpha, beta, delta)
+if st.button("Run Simulation"):
 
-# Inject attractors
-def symbol_to_vector(symbol, dim):
-    np.random.seed(abs(hash(symbol)) % (2**32))
-    return np.random.normal(0, 0.1, dim)
+    # Add current symbolic input to memory
+    st.session_state.memory.add(symbol, alpha, beta, delta)
 
-model.inject_H = symbol_to_vector(symbol + "_H", dimensions)
-model.inject_M = symbol_to_vector(symbol + "_M", dimensions)
-model.inject_R = hash(symbol + "_R") % 100 / 100.0  # 0.0 to 1.0
+    # Create and configure model
+    model = RCDModel()
+    model.set_parameters(alpha=alpha, beta=beta, delta=delta,
+                         n_dimensions=dimensions, noise_level=noise)
 
-st.write(f"Running simulation for: **{symbol}**")
+    # Inject attractors
+    def symbol_to_vector(symbol, dim):
+        np.random.seed(abs(hash(symbol)) % (2**32))
+        return np.random.normal(0, 0.1, dim)
 
+    model.inject_H = symbol_to_vector(symbol + "_H", dimensions)
+    model.inject_M = symbol_to_vector(symbol + "_M", dimensions)
+    model.inject_R = hash(symbol + "_R") % 100 / 100.0
 
-# Run simulation
-results = model.simulate(n_timesteps=100)
+    st.write(f"Running simulation for: **{symbol}**")
 
-# Preview parsed results (optional debug)
-st.write("Example of raw output (first 5 steps):")
-st.json({k: v[:5] for k, v in results.items()})
+    # Run simulation
+    results = model.simulate(n_timesteps=100)
 
-#Parse and plot
-import numpy as np
+    # Display symbolic memory buffer
+    st.subheader("Symbolic Memory (recent inputs):")
+    st.json(st.session_state.memory.get_recent())
 
-# Extract and parse the first dimension of each H/M/R vector
-H_vals = [h[0] for h in results["H_states"]]
-M_vals = [m[0] for m in results["M_states"]]
+    # Extract H and M values
+    H_vals = [h[0] for h in results["H_states"]]
+    M_vals = [m[0] for m in results["M_states"]]
 
-# Plot them
-st.line_chart({
-    "H(t)": H_vals,
-    "M(t)": M_vals,
-})
+    # Plot H and M
+    st.line_chart({"H(t)": H_vals, "M(t)": M_vals})
 
-import numpy as np
+    # Compute and plot symbolic divergence
+    import numpy as np
+    dist = [np.linalg.norm(np.array(h) - np.array(m)) for h, m in zip(results["H_states"], results["M_states"])]
+    st.line_chart({"‖H - M‖(t)": dist})
 
-dist = [np.linalg.norm(np.array(h) - np.array(m)) for h, m in zip(results["H_states"], results["M_states"])]
-
-st.line_chart({"‖H - M‖(t)": dist})
-
-st.write("Example of raw output (first 5 steps):")
-st.json({k: v[:5] for k, v in results.items()})
-
-# Check available outputs
-st.write("Available keys in results:", list(results.keys()))
-
-# Plot R(t) if it exists
-if "R_states" in results:
-    R_vals = [r[0] for r in results["R_states"]]
-    st.line_chart({"R(t)": R_vals})
-else:
-    st.write("R_states not found in results.")
-
-
-# st.line_chart({"y(t)": y_vals, "A(t)": A_vals})
-# st.write("Length of y:", len(y_vals))
-# st.write("First 5 y", y_vals[:5])
+    # Optional debug: show result keys
+    # st.write("Available result keys:", list(results.keys()))

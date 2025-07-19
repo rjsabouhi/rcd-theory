@@ -3,7 +3,7 @@
 import numpy as np
 from src.rcd_model import RCDModel
 from src.reactivation_trigger import should_reactivate
-from src.memory_buffer import RollingMemoryBuffer
+from app.memory_buffer import RollingMemoryBuffer
 from src.attractor_injection import inject_attractors
 
 class SimulationRunner:
