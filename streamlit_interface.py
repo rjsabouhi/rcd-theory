@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from rcd_model import RCDModel
+from src.rcd_model import RCDModel
 
 st.title("Attractor Forge - RCD Simulation")
 
