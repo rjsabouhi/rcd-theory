@@ -2,7 +2,7 @@
 print("✅ rcd_model.py loaded")
 print("✅ Running RCD simulation...")
 
-from src.rcd_model import RCDModel
+from rcd_model import RCDModel
 from novelty_trigger import check_novelty_trigger
 import numpy as np
 
