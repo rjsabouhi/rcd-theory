@@ -49,11 +49,26 @@ st.line_chart({
     "M(t)": M_vals,
 })
 
+import numpy as np
+
+dist = [np.linalg.norm(np.array(h) - np.array(m)) for h, m in zip(results["H_states"], results["M_states"])]
+
+st.line_chart({"‖H - M‖(t)": dist})
+
 st.write("Example of raw output (first 5 steps):")
 st.json({k: v[:5] for k, v in results.items()})
 
-# Display results
-y_vals = [r[0] for r in results]
-A_vals = [r[1] for r in results]
+# Check available outputs
+st.write("Available keys in results:", list(results.keys()))
 
-st.line_chart({"y(t)": y_vals, "A(t)": A_vals})
+# Plot R(t) if it exists
+if "R_states" in results:
+    R_vals = [r[0] for r in results["R_states"]]
+    st.line_chart({"R(t)": R_vals})
+else:
+    st.write("R_states not found in results.")
+
+
+# st.line_chart({"y(t)": y_vals, "A(t)": A_vals})
+# st.write("Length of y:", len(y_vals))
+# st.write("First 5 y", y_vals[:5])
