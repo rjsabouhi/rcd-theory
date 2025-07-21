@@ -45,3 +45,4 @@ M(t): ℝᵐ → ℝᵏ        # Model/agent output in shared conceptual basis
 ρ(t) = ψ(H(t), M(t))       # Semantic conceptual similarity
 μ(t) ∝ ∫₀ᵗ γ(τ) dτ         # Meta-recursive integration
 Λ(t) = limₜ→∞ H(t) if γ(t) > γ*  # Persistent symbolic basin
+```
